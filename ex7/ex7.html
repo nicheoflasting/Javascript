@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JavaScript Basics 3</title>
+  </head>
+
+  <body> 
+    <h1>Objects 7</h1> 
+    <div id="results"></div>
+    <script> 
+    class Book {
+        constructor(name, author, publisher, year) {
+            this.name = name;
+            this.author = author;
+            this.publisher = publisher;
+            this.year = year;
+        }
+
+        toString() {
+            return `book: ${this.name}, ${this.author}, ${this.publisher}, ${this.year}`;
+        }
+        
+    }
+    
+    class Library {
+        constructor() {
+            this.books = []
+        }
+
+        addBook(book) {
+            this.books.push(book);
+            console.log(`A new book is added to library: ${book.name}`);
+        }
+
+        printBooks() {
+        console.log("Library has the following books:");
+        this.books.forEach(book => {
+            console.log(` - ${book.toString()}`);
+        });
+        console.log(`Library has ${this.books.length} books`);
+    }
+
+    }
+
+    const myLibrary = new Library();
+
+    const book1 = new Book("JavaScript Bible", "Danny Goodman", "John Wiley & Sons", 1998);
+    const book2 = new Book("Learning Python", "Mark Lutz", "O'Reilly", 2013);
+    const book3 = new Book("Flutter in Action", "Eric Windmill", "Manning Publications", 2020);
+
+    myLibrary.addBook(book1);
+    myLibrary.addBook(book2);
+    myLibrary.addBook(book3);
+
+    myLibrary.printBooks();
+    </script>
+ </body>
+</html>
