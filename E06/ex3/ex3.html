@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M0603 - Golf Courses</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+    }
+
+    #map {
+      position: absolute;
+      text-align: center;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+  <script>
+    // Initialize the map
+    const map = L.map('map').setView([51.505, -0.09], 2);
+    
+    // Add OpenStreetMap tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    
+    // Create a cluster
+    var markers = L.markerClusterGroup();
+    
+    
+    // Fetch JSON file
+    fetch('courses.json')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(course => {
+                var marker = L.marker([course.lat, course.lng])
+                .addTo(map)
+                .bindPopup(`
+                    <h3>${course.course}</h3>
+                    <p><i class="fa-solid fa-house"></i></i> ${course.address}</p>
+                    <p><i class="fa-solid fa-phone"></i>  ${course.phone}</p>
+                    <p><i class="fa-solid fa-envelope"></i> ${course.email}</p>
+                    <p><i class="fa-solid fa-link"></i> <a href="${course.web}">${course.web}</a></p>
+                    <p><i>${course.text}</i></p>
+                `);
+
+                markers.addLayer(marker);
+                
+            });
+            map.addLayer(markers);
+        })
+        .catch(error => console.error('Error loading JSON:', error));
+</script>
+</body>
+</html>

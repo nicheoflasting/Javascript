@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JavaScript Basics 3</title>
+  </head>
+
+  <body> 
+    <h1>Objects 2</h1> 
+    <div id="results"></div>
+    <script>   
+      let person = {
+        firstName: 'Kirsi', 
+        lastName: 'Kernel',
+        age: 30,
+        isStudent: false
+};
+
+delete person.isStudent;
+person.address = 'Piippukatu 2';
+person.age = 31;
+
+for (const [key, value] of Object.entries(person)) {
+  console.log(`${key}: ${value}`); 
+}
+
+
+    </script>
+ </body>
+</html>

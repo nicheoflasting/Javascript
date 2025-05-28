@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Basics 3</title>
+  </head>
+
+  <body> 
+    <h1>Objects 8</h1> 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 10px;
+        }
+
+        .container {
+            background: rgba(53, 97, 192, 0.509);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            margin: auto;
+        }
+
+        input {
+            width: 30%;
+            padding: 5px;
+            margin: 5px 10px;
+            text-align: left;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background: rgba(27, 27, 250, 0.683);
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .result {
+            font-size: 20px;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Speed Calculator</h2>
+        
+        <label>Hours:</label>
+        <input type="number" id="hours" min="0" value="0"><br>
+
+        <label>Minutes:</label>
+        <input type="number" id="minutes" min="0" value="0"><br>
+
+        <label>Seconds:</label>
+        <input type="number" id="seconds" min="0" value="0"><br>
+
+        <label>Kilometers:</label>
+        <input type="number" id="kilometers" min="0.1" step="0.1" value="1"><br>
+
+        <button onclick="calcResult()">Calculate Speed</button>
+
+        <div class="result" id="result">Result is -- km/h</div>
+    </div>
+
+    <script>
+        class SpeedCalculator {
+            constructor(hours, minutes, seconds, kilometers) {
+                this.hours = hours;
+                this.minutes = minutes;
+                this.seconds = seconds;
+                this.kilometers = kilometers;
+            }
+
+            
+            calcKmhPace() {
+                let totalHours = this.hours + (this.minutes / 60) + (this.seconds / 3600);
+                if (totalHours === 0 || this.kilometers <= 0) {
+                    return 0;
+                }
+                return (this.kilometers / totalHours).toFixed(2);
+            }
+        }
+
+        
+        function calcResult() {
+            
+            let hours = parseFloat(document.getElementById("hours").value);
+            let minutes = parseFloat(document.getElementById("minutes").value);
+            let seconds = parseFloat(document.getElementById("seconds").value);
+            let kilometers = parseFloat(document.getElementById("kilometers").value);
+
+            
+            let calculator = new SpeedCalculator(hours, minutes, seconds, kilometers);
+
+            
+            let speed = calculator.calcKmhPace();
+            document.getElementById("result").textContent = `Result is ${speed} km/h`;
+        }
+    </script>
+
+</body>
+</html>

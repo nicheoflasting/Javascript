@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fruit Game</title>
+    <style>
+        .slot-machine {
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      margin-bottom: 20px;}
+    </style>
+  </head>
+
+  <body> 
+    <h1>Fruit Game</h1> 
+    <form>
+    Welcome to Fruit Game. Each spin will cost 1 euro. You will win 2 euros, if you
+    got two same fruits and 10 euros, if each of the fruits are the same.
+    <br><br>
+    Good Luck!
+    <br><br>
+    <button type="button" id="spin">Spin!</button>
+    <div class="message" id="message"></div>
+    <div class="budget" id="budget"></div>
+    </form>
+    <div class="slot-machine">
+        <div class="slot"><img src="1.png" id="fruit1"></div>
+        <div class="slot"><img src="2.png" id="fruit2"></div>
+        <div class="slot"><img src="3.png" id="fruit3"></div>
+      </div>
+    <div id="results"></div>
+    <script>
+        const images = ['1.png', '2.png', '3.png', '4.png', '5.png'];
+        let budget = 100;
+
+        function updatedbudget() {
+        document.getElementById('budget').textContent = `You have: ${budget} euros`;}
+        
+        function displayMessage(text, isWin = false) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = text;
+            messageDiv.className = isWin ? 'message win' : 'message';}
+
+        function ranslot() {
+        return Math.floor(Math.random() * images.length);}
+        
+        document.getElementById('spin').addEventListener('click', () => {
+            if (budget <= 0) {
+                displayMessage('Sorry, you do not have any euros left!');
+                return;}
+
+        budget -= 1;
+
+        const randind = [ranslot(), ranslot(), ranslot()];
+        document.getElementById('fruit1').src = images[randind[0]];
+        document.getElementById('fruit2').src = images[randind[1]];
+        document.getElementById('fruit3').src = images[randind[2]];
+        
+        
+
+        const counts = {};
+        randind.forEach(index => {
+        counts[index] = (counts[index] || 0) + 1;});
+
+        let winnings = 0;
+        if (Object.values(counts).includes(3)) {
+            winnings = 10; 
+        }   else if (Object.values(counts).includes(2)) {
+            winnings = 2;}
+
+      
+        budget += winnings;
+        if (winnings > 0) {
+            displayMessage(`WOHOO - You won ${winnings} euros!`, true);
+        }   else {
+            displayMessage('Sorry - no win!');
+        }
+
+      
+        updatedbudget();
+
+      
+        if (budget <= 0) {
+            displayMessage('Sorry, you do not have any euros left!');
+            document.getElementById('spin').disabled = true;
+        }
+    });
+
+    updatedbudget();
+    </script>
+ </body>
+</html>

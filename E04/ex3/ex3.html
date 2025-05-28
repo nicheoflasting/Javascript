@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DOM and Events</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        
+    }
+</style>
+</head>
+<body>
+    <h1>E03 - Todo</h1>
+    <label for="todoo">New todo:</label>
+    <input type="text" id="todoo">
+    <button id="Addd">Add</button>
+    <button id="Clearr">Clear</button>
+    <ul id="todolist"></ul>
+
+<script>
+    document.getElementById('Addd').addEventListener('click', function() {
+            const input = document.getElementById('todoo');
+            const todoText = input.value.trim();
+            if (todoText !== '') {
+                const li = document.createElement('li');
+                li.textContent = todoText;
+                li.addEventListener('click', function() {
+                    li.remove();
+                });
+                document.getElementById('todolist').appendChild(li);
+                input.value = '';
+                input.focus();
+            }
+        });
+
+    document.getElementById('Clearr').addEventListener('click', function() {
+            document.getElementById('todolist').innerHTML = '';
+        });
+</script>
+</body>
+</html>

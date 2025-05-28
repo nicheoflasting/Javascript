@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JavaScript Basics 3</title>
+  </head>
+
+  <body> 
+    <h1>Objects 5</h1> 
+    <div id="results"></div>
+    <script> 
+    const circle = {
+        radius: 5,
+        color: 'red',
+
+        getArea: function() {
+            return Math.PI * Math.pow(this.radius, 2);},
+        getCircumference: function() {
+            return Math.PI * 2 * this.radius;}
+    }
+    
+
+console.log(`Circle radius is ${circle.radius} and its color is ${circle.color}`);
+console.log(`Area: ${circle.getArea().toFixed(2)}`)
+console.log(`Circumference: ${circle.getCircumference().toFixed(2)}`)
+    </script>
+ </body>
+</html>

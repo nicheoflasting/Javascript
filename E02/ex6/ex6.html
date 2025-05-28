@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Date and Time</title>
+  </head>
+
+  <body> 
+    <h1>Date and Time</h1> 
+    <div id="currentdate"></div>
+    <script> 
+    function updatedDateTime() {
+        const atmm = new Date();
+        document.getElementById('currentdate').innerText = atmm.toLocaleString();
+    }
+
+    updatedDateTime();
+
+    setInterval(updatedDateTime, 1000);
+    </script>
+ </body>
+</html>

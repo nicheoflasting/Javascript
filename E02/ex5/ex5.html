@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Loading</title>
+  </head>
+
+  <body> 
+    <h1>Loading</h1> 
+    <div id="loading">Loading... 0%</div>
+    <script>
+    let progress = 0;
+    const loadinggg = document.getElementById('loading');
+
+    const interval = setInterval(() => {
+      if (progress < 100) {
+        progress++;
+        loadinggg.innerHTML = `Loading... ${progress}%`;
+      } else {
+        clearInterval(interval);
+        loadinggg.innerHTML = 'Loading finished!';
+      }
+    }, 1000);
+    </script>
+ </body>
+</html>

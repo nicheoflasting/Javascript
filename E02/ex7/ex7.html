@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lady Gaga</title>
+</head>
+<body>
+
+  <h1>Lady Gaga</h1>
+  <div id="message"></div>
+  <div id="fireworks"></div>
+
+  <script>
+    function showMessage(text) {
+      const messageDiv = document.createElement('div');
+      messageDiv.textContent = text;
+      messageDiv.classList.add('message');
+      document.getElementById('message').appendChild(messageDiv);
+    }
+
+    window.onload = function() {
+      showMessage('OMG - Lady Gaga starts singing!');
+      
+      const fireworks = document.getElementById('fireworks');
+      fireworks.style.display = 'block';
+
+      
+      let niceCounter = 0;
+      const niceInterval = setInterval(() => {
+        niceCounter++;
+        showMessage('NICE - fireworks!');
+        if (niceCounter >= 5) {
+          clearInterval(niceInterval); 
+        }
+      }, 1000);
+
+      
+      setTimeout(() => {
+        showMessage('WOW - It was the best concert in my life...');
+        fireworks.style.display = 'none'; 
+      }, 10000); e
+    };
+  </script>
+</body>
+</html>

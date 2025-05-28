@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Display text</title>
+  </head>
+
+  <body> 
+    <h1>Information</h1> 
+    <form>
+      Name<br>
+      <input type="text" id="Name"><br> 
+      Age<br>
+      <input type="text" id="Age"><br><br>
+      <button type="button" onclick="show()">
+        Show
+      </button>
+    </form>
+    <div id="results"></div>
+    <script>   
+      function show() {
+        let Name = document.getElementById("Name");
+        let Age = parseInt(document.getElementById("Age").value);
+        let div = document.getElementById("results"); 
+        const currentYear = new Date().getFullYear();
+        const year = currentYear - Age; 
+        div.innerHTML = `<h3>Hi ${Name.value}!</h3>
+                        <p>It has been a pleasure working with you <b>${Name.value}</b> all these years.
+            Nice to see you are only ${year} years old. So we still have several years to work together.</p>`;
+      } 
+    </script>
+ </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JavaScript Basics 3</title>
+  </head>
+
+  <body> 
+    <h1>Objects 6</h1> 
+    <div id="results"></div>
+    <script> 
+    function Person(name, age, phone, email) {
+        this.name = name;
+        this.age = age;
+        this.phone = phone;
+        this.email = email;
+
+    
+    this.addAge = function() {
+        this.age += 1;
+    };
+
+    
+    this.info = function() {
+        return `Name: ${this.name}, Age: ${this.age}, Phone: ${this.phone}, Email: ${this.email}`;
+    };
+}
+    
+
+const per1 = new Person('Loi', 22, '123-456-789','loi@gmail.com');
+const per2 = new Person('Phat', 22, '123-654-789','phat@gmail.com');
+const per3 = new Person('Huong', 22, '123-456-987','huong@gmail.com');
+
+per1.addAge();
+per2.addAge();
+per3.addAge();
+
+console.log(per1.info());
+console.log(per2.info());
+console.log(per3.info());
+    </script>
+ </body>
+</html>
