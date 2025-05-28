@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M0602 - Fav Places</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+        #map {
+            height: 965px;
+        }
+        #form-container {
+            position: absolute;
+            top: 200px;
+            left: 10px;
+            background: rgba(255,255,255,0.4);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+        input {
+            display: block;
+            margin: 5px 0;
+            width: 150px;
+        }
+  </style>
+</head>
+<body>
+
+    <div id="form-container">
+        <h3>Add a new favourite place</h3>
+        <label>Name: <input type="text" id="place-name"></label>
+        <label>Latitude: <input type="text" id="place-lat"></label>
+        <label>Longitude: <input type="text" id="place-lng"></label>
+        <button onclick="addPlace()">Add</button>
+    </div>
+
+    <div id="map"></div>
+    <script>
+      // Initialize the map
+      const map = L.map('map').setView([51.505, -0.09], 3);
+
+      // Add OpenStreetMap tile layer
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+      
+      let places = JSON.parse(localStorage.getItem('places')) || [];
+
+        // Function to add a place
+        function addPlace() {
+            let name = document.getElementById('place-name').value;
+            let lat = parseFloat(document.getElementById('place-lat').value);
+            let lng = parseFloat(document.getElementById('place-lng').value);
+
+            if (name && !isNaN(lat) && !isNaN(lng)) {
+                let place = { name, lat, lng };
+                places.push(place);
+                localStorage.setItem('places', JSON.stringify(places));
+                addMarker(place);
+            } else {
+                alert('Please enter valid values.');
+            }
+        }
+
+        // Function to add a marker to the map
+        function addMarker(place) {
+            let marker = L.marker([place.lat, place.lng]).addTo(map)
+                .bindPopup(`<b>${place.name}</b>`)
+                .openPopup();
+        }
+
+        // Load stored places
+        places.forEach(addMarker);
+  </script>
+</body>
+</html>

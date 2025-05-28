@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draggable Ball</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            overflow: hidden;
+        }
+        .ball {
+            width: 60px;
+            height: 60px;
+            background-color: green;
+            border-radius: 50%;
+            position: absolute;
+            cursor: grab;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ball"></div>
+
+    <script>
+        const ball = document.querySelector(".ball");
+        let isDragging = false;
+
+        ball.addEventListener("mousedown", () => {
+            isDragging = true;
+            ball.style.cursor = "grabbing";
+        });
+
+        document.addEventListener("mouseup", () => {
+            isDragging = false;
+            ball.style.cursor = "grab";
+        });
+
+        document.addEventListener("mousemove", (event) => {
+            if (isDragging) {
+                ball.style.left = `${event.clientX}px`;
+                ball.style.top = `${event.clientY}px`;
+            }
+        });
+    </script>
+
+</body>
+</html>
+
+

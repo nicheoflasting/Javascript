@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Load and parse JSON</title>
+<style>
+    body {
+            font-family: Arial, sans-serif;
+            text-align: left;
+            margin: 50px;
+        }
+        #joke {
+            font-family: Arial, sans-serif;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+</style>
+</head>
+<body>
+  <h1>E02 - Chuck Norris facts</h1>
+  <p>Chuck Norris facts are satirical factoids about martial artist and actor Chuck Norris that have become an Internet phenomenon and as a result have become widespread in popular culture. 
+    The 'facts' are normally absurd hyperbolic claims about Norris' toughness, attitude, virility, sophistication, and masculinity.</p>
+
+    <p>Chuck Norris facts have spread around the world, leading not only to translated versions, but also spawning localized versions mentioning country-specific advertisements and other Internet phenomena. 
+    Allusions are also sometimes made to his use of roundhouse kicks to perform seemingly any task, his large amount of body hair with specific regard to his beard, and his role in the action television series Walker, Texas Ranger.</p>
+  <button onclick="ranjoke()">Get a random joke</button>
+  <p id="message"></p>
+    
+    
+  <script>
+    function ranjoke() {
+        fetch('https://api.chucknorris.io/jokes/random')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('message').innerText = data.value;
+            })
+            .catch(error => console.error('Error fetching joke:', error));
+    }
+</script>
+</body>
+</html>

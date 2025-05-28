@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JavaScript Basics 3</title>
+  </head>
+
+  <body> 
+    <h1>Objects 1</h1> 
+    <div id="results"></div>
+    <script>   
+      let person = {
+        firstName: 'Kirsi', 
+        lastName: 'Kernel',
+        age: 30,
+        isStudent: false
+};
+
+for (const [key, value] of Object.entries(person)) {
+  console.log(`${value}`); 
+}
+    </script>
+ </body>
+</html>

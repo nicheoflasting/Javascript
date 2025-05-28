@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f2e1;
+}
+
+.container {
+    width: 300px;
+    margin: 50px auto;
+    text-align: center;
+    background-color: #fae9d8;
+    padding: 30px 50px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#name-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.suggestions-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+    text-align: left;
+    max-height: 150px;
+    overflow-y: auto;
+    display: none;
+}
+
+.suggestions-list li {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.suggestions-list li:hover, .suggestions-list li.active {
+    background-color: #d3c4a1;
+}

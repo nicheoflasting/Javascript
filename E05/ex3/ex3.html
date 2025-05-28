@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Load and parse JSON</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        
+    }
+</style>
+</head>
+<body>
+    <h1>E04 - Bitcoin Value Fetcher</h1>
+    <p>Click the below button to get Bitcoin value in euros</p>
+    <button onclick="getBitcoin()">Get Bitcoin Value</button>
+    <p id="message"></p>
+    
+
+<script>
+     function getBitcoin() {
+        fetch("https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC&tsyms=EUR")
+            .then(response => response.json())
+            .then(data => {
+                if (data.BTC && data.BTC.EUR) {
+                    const date = new Date().toLocaleString();
+                    document.getElementById('message').innerText = `${date}: ${data.BTC.EUR} €`;
+                } else {
+                    document.getElementById('message').innerText = "Error fetching Bitcoin value.";
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching Bitcoin data:', error);
+                document.getElementById('message').innerText = "Failed to fetch Bitcoin value.";
+            });
+    }
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JavaScript Basics 3</title>
+  </head>
+
+  <body> 
+    <h1>Objects 4</h1> 
+    <div id="results"></div>
+    <script>   
+    let fruit = {
+        Apple: 3, 
+        Banana: 5,
+        Orange: 2,
+        Grape: 1
+};
+let sumfruit = 0;
+for (let a in fruit) {
+    sumfruit += fruit[a];
+}
+console.log(`Fruits count is ${sumfruit}`);
+
+    </script>
+ </body>
+</html>
